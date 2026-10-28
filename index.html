@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seifelwakeel | اكتشف مصر</title>
+<meta name="description" content="اكتشف أجمل المعالم السياحية والفنادق في القاهرة والغردقة مع Seifelwakeel.">
+<style>
+:root {
+  --navy: #102b46;
+  --blue: #087eaa;
+  --gold: #e9b65a;
+  --light: #f4f7fa;
+  --text: #243449;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--text);
+  background: #fff;
+  line-height: 1.8;
+}
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+header {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 2px 18px #102b4610;
+}
+.nav {
+  max-width: 1200px; margin: auto; padding: 15px 22px;
+  display: flex; justify-content: space-between;
+  align-items: center; gap: 20px;
+}
+.logo { font-size: 23px; font-weight: 900; color: var(--navy); }
+.logo span { color: var(--blue); }
+nav { display: flex; gap: 23px; flex-wrap: wrap; }
+nav a { font-size: 14px; font-weight: bold; }
+nav a:hover { color: var(--blue); }
+.btn {
+  display: inline-block; border: 0; border-radius: 9px;
+  padding: 11px 20px; background: var(--blue);
+  color: white; font-weight: bold;
+}
+.btn:hover { background: var(--navy); }
+.hero {
+  min-height: 570px; display: flex; align-items: center;
+  color: white; position: relative;
+  background: linear-gradient(90deg, #061a2bca, #061a2b42),
+  url("https://images.unsplash.com/photo-1539768942893-daf53e448371?auto=format&fit=crop&w=2000&q=85") center/cover;
+}
+.hero-content { max-width: 1200px; width: 100%; margin: auto; padding: 65px 24px; }
+.eyebrow { color: var(--gold); font-weight: bold; letter-spacing: 1px; }
+.hero h1 { font-size: clamp(35px, 6vw, 65px); line-height: 1.35; margin: 12px 0; }
+.hero p { max-width: 590px; color: #e9eff5; font-size: 17px; }
+.search {
+  margin-top: 30px; padding: 12px; border-radius: 14px;
+  background: white; display: flex; gap: 12px; max-width: 750px;
+  flex-wrap: wrap;
+}
+.search input, .search select {
+  flex: 1; min-width: 140px; padding: 12px;
+  border: 1px solid #e0e6ed; border-radius: 8px;
+  background: white; color: var(--text); outline-color: var(--blue);
+}
+.search .btn { min-width: 110px; }
+section { padding: 75px 22px; }
+.container { max-width: 1200px; margin: auto; }
+.section-head { text-align: center; margin-bottom: 35px; }
+.section-head h2 { font-size: clamp(25px, 4vw, 36px); color: var(--navy); }
+.section-head p { color: #748194; margin-top: 8px; }
+.cities { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
+.city {
+  position: relative; height: 310px; border-radius: 18px;
+  overflow: hidden; color: white;
+}
+.city img { width: 100%; height: 100%; object-fit: cover; transition: .5s; }
+.city:hover img { transform: scale(1.06); }
+.city:after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(transparent, #071b2cdb);
+}
+.city-info { position: absolute; bottom: 23px; right: 24px; z-index: 1; }
+.city-info h3 { font-size: 29px; }
+.city-info p { color: #e7edf2; }
+.city-info a { display: inline-block; margin-top: 10px; color: var(--gold); font-weight: bold; }
+.soft { background: var(--light); }
+.filters {
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 10px; margin-bottom: 28px;
+}
+.filter {
+  padding: 9px 18px; border: 1px solid #dce4ec;
+  background: white; border-radius: 25px; color: var(--navy);
+}
+.filter.active, .filter:hover { background: var(--navy); color: white; }
+.grid {
+  display: grid; grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 23px;
+}
+.card {
+  background: white; border-radius: 15px; overflow: hidden;
+  border: 1px solid #edf0f3; transition: .25s;
+}
+.card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px #102b4612; }
+.card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+.card-body { padding: 18px; }
+.tag {
+  display: inline-block; padding: 3px 10px; border-radius: 6px;
+  background: #e5f4f8; color: #087eaa; font-size: 12px; font-weight: bold;
+}
+.card h3 { font-size: 19px; margin: 9px 0 4px; color: var(--navy); }
+.card p { font-size: 14px; color: #6d7988; }
+.card-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 8px; margin-top: 17px; padding-top: 13px;
+  border-top: 1px solid #edf0f3;
+}
+.price { color: var(--blue); font-weight: bold; font-size: 14px; }
+.small-btn {
+  border: 0; border-radius: 7px; padding: 8px 12px;
+  background: var(--navy); color: white; font-size: 12px;
+}
+.empty { grid-column: 1/-1; text-align: center; padding: 35px; color: #748194; }
+.feature {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 22px;
+  text-align: center;
+}
+.feature article { padding: 25px 15px; }
+.feature .emoji { font-size: 36px; }
+.feature h3 { color: var(--navy); margin: 8px 0; }
+.feature p { color: #748194; font-size: 14px; }
+.cta {
+  background: var(--navy); color: white; text-align: center;
+  padding: 55px 22px;
+}
+.cta h2 { font-size: 30px; margin-bottom: 10px; }
+.cta p { color: #d7e2ec; margin-bottom: 22px; }
+footer { background: #091d30; color: #d9e2eb; padding: 35px 22px; }
+.footer-inner {
+  max-width: 1200px; margin: auto; display: flex;
+  justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+footer p { font-size: 13px; }
+.toast {
+  position: fixed; bottom: 20px; left: 20px; right: 20px;
+  max-width: 420px; margin: auto; background: var(--navy);
+  color: white; border-radius: 10px; padding: 15px;
+  text-align: center; display: none; z-index: 30;
+}
+@media(max-width:850px) {
+  .grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  nav { gap: 12px; }
+  .nav { flex-wrap: wrap; }
+}
+@media(max-width:560px) {
+  nav { width: 100%; justify-content: center; }
+  .cities, .grid, .feature { grid-template-columns: 1fr; }
+  .hero { min-height: 560px; }
+  .city { height: 260px; }
+  section { padding: 50px 16px; }
+  .card img { height: 230px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="#home">Seif<span>elwakeel</span></a>
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#cities">المدن</a>
+      <a href="#places">المعالم السياحية</a>
+      <a href="#hotels">الفنادق</a>
+      <a href="#about">عن الموقع</a>
+    </nav>
+    <a class="btn" href="#places">اكتشف مصر</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="eyebrow">اكتشف جمال مصر</span>
+    <h1>رحلتك القادمة<br>تبدأ من هنا</h1>
+    <p>من سحر الأهرامات في القاهرة إلى شواطئ البحر الأحمر في الغردقة، اكتشف أماكن تستحق الزيارة مع Seifelwakeel.</p>
+    <form class="search" id="searchForm">
+      <input id="searchInput" type="search" placeholder="ابحث عن مكان أو فندق..." aria-label="ابحث عن مكان">
+      <select id="citySelect" aria-label="اختر المدينة">
+        <option value="all">كل المدن</option>
+        <option value="cairo">القاهرة</option>
+        <option value="hurghada">الغردقة</option>
+      </select>
+      <button class="btn" type="submit">ابحث الآن</button>
+    </form>
+  </div>
+</section>
+
+<section id="cities">
+  <div class="container">
+    <div class="section-head">
+      <h2>اختار وجهتك القادمة</h2>
+      <p>مدينتان من أجمل الوجهات السياحية في مصر</p>
+    </div>
+    <div class="cities">
+      <article class="city">
+        <img src="https://images.unsplash.com/photo-1568322445389-f64ac2515020?auto=format&fit=crop&w=1000&q=85" alt="أهرامات الجيزة">
+        <div class="city-info">
+          <h3>القاهرة والجيزة</h3>
+          <p>التاريخ والحضارة والمعالم الخالدة</p>
+          <a href="#places" data-city-link="cairo">اكتشف القاهرة ←</a>
+        </div>
+      </article>
+      <article class="city">
+        <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1000&q=85" alt="البحر والشواطئ">
+        <div class="city-info">
+          <h3>الغردقة</h3>
+          <p>البحر الأحمر والشواطئ والرحلات البحرية</p>
+          <a href="#places" data-city-link="hurghada">اكتشف الغردقة ←</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="soft" id="places">
+  <div class="container">
+    <div class="section-head">
+      <h2>أشهر المعالم السياحية</h2>
+      <p>اكتشف الأماكن التي تستحق أن تكون في خطتك</p>
+    </div>
+    <div class="filters" id="placeFilters">
+      <button class="filter active" data-filter="all">كل الأماكن</button>
+      <button class="filter" data-filter="cairo">القاهرة والجيزة</button>
+      <button class="filter" data-filter="hurghada">الغردقة</button>
+    </div>
+    <div class="grid" id="placesGrid"></div>
+  </div>
+</section>
+
+<section id="hotels">
+  <div class="container">
+    <div class="section-head">
+      <h2>فنادق للإقامة والاسترخاء</h2>
+      <p>أفكار للإقامة في القاهرة والغردقة، مع روابط للبحث عن الحجز</p>
+    </div>
+    <div class="filters" id="hotelFilters">
+      <button class="filter active" data-filter="all">كل الفنادق</button>
+      <button class="filter" data-filter="cairo">فنادق القاهرة</button>
+      <button class="filter" data-filter="hurghada">فنادق الغردقة</button>
+    </div>
+    <div class="grid" id="hotelsGrid"></div>
+    <p style="text-align:center;color:#748194;font-size:13px;margin-top:22px">
+      الأسعار والتوافر يتغيران حسب تاريخ السفر ونوع الغرفة. تحقق من السعر النهائي لدى الفندق أو منصة الحجز.
+    </p>
+  </div>
+</section>
+
+<section class="soft" id="about">
+  <div class="container">
+    <div class="section-head">
+      <h2>ليه تختار Seifelwakeel؟</h2>
+      <p>كل ما تحتاجه عشان تبدأ تخطط لرحلتك</p>
+    </div>
+    <div class="feature">
+      <article><div class="emoji">🏛️</div><h3>معالم مميزة</h3><p>اكتشف التاريخ والطبيعة والشواطئ في وجهات مختلفة.</p></article>
+      <article><div class="emoji">🏨</div><h3>خيارات إقامة</h3><p>تعرّف على فنادق مختلفة وافتح خيارات الحجز المتاحة.</p></article>
+      <article><div class="emoji">📍</div><h3>بحث سهل</h3><p>ابحث عن الأماكن حسب اسمها أو المدينة التي تريد زيارتها.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>مستعد تكتشف مصر؟</h2>
+  <p>اختار وجهتك، جهّز خطتك، وخلي رحلتك القادمة ذكرى جميلة.</p>
+  <a class="btn" href="#cities" style="background:var(--gold);color:#102b46">ابدأ رحلتك الآن</a>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a class="logo" href="#home" style="color:white">Seif<span>elwakeel</span></a>
+      <p>اكتشف مصر بطريقتك.</p>
+    </div>
+    <p>© <span id="year"></span> Seifelwakeel — جميع الحقوق محفوظة.</p>
+    <a href="#home">العودة للأعلى ↑</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const places = [
+  {
+    name:"أهرامات الجيزة",
+    city:"cairo", cityName:"القاهرة والجيزة",
+    type:"آثار وتاريخ", price:"معلومات الزيارة",
+    desc:"اكتشف واحدة من أشهر عجائب العالم القديم.",
+    img:"https://images.unsplash.com/photo-1568322445389-f64ac2515020?auto=format&fit=crop&w=800&q=80",
+    link:"https://egymonuments.gov.eg/"
+  },
+  {
+    name:"المتحف المصري الكبير",
+    city:"cairo", cityName:"القاهرة والجيزة",
+    type:"متحف", price:"تحقق من التذاكر",
+    desc:"رحلة بين آثار مصر القديمة بالقرب من الأهرامات.",
+    img:"https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=800&q=80",
+    link:"https://grandegyptianmuseum.org/"
+  },
+  {
+    name:"برج القاهرة",
+    city:"cairo", cityName:"القاهرة",
+    type:"إطلالة بانورامية", price:"معلومات الزيارة",
+    desc:"شاهد إطلالة واسعة على القاهرة ونهر النيل.",
+    img:"https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/search?q=Cairo+Tower+official+website"
+  },
+  {
+    name:"خان الخليلي",
+    city:"cairo", cityName:"القاهرة",
+    type:"أسواق وتراث", price:"زيارة حرة",
+    desc:"استمتع بالأزقة التاريخية والمقاهي والمحلات التراثية.",
+    img:"https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/maps/search/Khan+el-Khalili+Cairo"
+  },
+  {
+    name:"جزر الجفتون",
+    city:"hurghada", cityName:"الغردقة",
+    type:"بحر وطبيعة", price:"تحقق من الرحلات",
+    desc:"رحلات بحرية وشواطئ جميلة في البحر الأحمر.",
+    img:"https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/maps/search/Giftun+Islands+Hurghada"
+  },
+  {
+    name:"مارينا الغردقة",
+    city:"hurghada", cityName:"الغردقة",
+    type:"تنزه ومطاعم", price:"زيارة حرة",
+    desc:"مكان مناسب للتنزه والاستمتاع بأجواء المرسى.",
+    img:"https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/maps/search/Hurghada+Marina"
+  },
+  {
+    name:"الشعاب المرجانية",
+    city:"hurghada", cityName:"الغردقة",
+    type:"أنشطة بحرية", price:"حسب الرحلة",
+    desc:"اكتشف الحياة البحرية من خلال رحلات الغوص المعتمدة.",
+    img:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/maps/search/Diving+Hurghada"
+  },
+  {
+    name:"شاطئ البحر الأحمر",
+    city:"hurghada", cityName:"الغردقة",
+    type:"شاطئ واسترخاء", price:"حسب الشاطئ",
+    desc:"وقت للاسترخاء والاستمتاع بالمياه والمناظر الطبيعية.",
+    img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/maps/search/Beaches+Hurghada"
+  }
+];
+
+const hotels = [
+  {
+    name:"فندق ماريوت القاهرة",
+    city:"cairo", cityName:"القاهرة",
+    type:"فندق في القاهرة",
+    desc:"ابحث عن الغرف والخدمات ومواعيد الإقامة المتاحة.",
+    img:"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/search?q=Cairo+Marriott+Hotel+official"
+  },
+  {
+    name:"فندق قريب من الأهرامات",
+    city:"cairo", cityName:"الجيزة",
+    type:"إقامة بالقرب من المعالم",
+    desc:"قارن أماكن الإقامة والإطلالات والمسافة من الأهرامات.",
+    img:"https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/search?q=hotels+near+Giza+Pyramids"
+  },
+  {
+    name:"فندق مطل على النيل",
+    city:"cairo", cityName:"القاهرة",
+    type:"إقامة وإطلالة",
+    desc:"اكتشف الفنادق المطلة على النيل وقارن الأسعار.",
+    img:"https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/search?q=Nile+view+hotels+Cairo"
+  },
+  {
+    name:"منتجع على البحر الأحمر",
+    city:"hurghada", cityName:"الغردقة",
+    type:"منتجع وشاطئ",
+    desc:"ابحث عن منتجعات تقدم إطلالات بحرية وخدمات متنوعة.",
+    img:"https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/search?q=Hurghada+Red+Sea+resorts"
+  },
+  {
+    name:"منتجع عائلي في الغردقة",
+    city:"hurghada", cityName:"الغردقة",
+    type:"إقامة عائلية",
+    desc:"قارن المرافق والأنشطة المناسبة للعائلات.",
+    img:"https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/search?q=family+resorts+Hurghada"
+  },
+  {
+    name:"إقامة بالقرب من المارينا",
+    city:"hurghada", cityName:"الغردقة",
+    type:"قريب من المرسى",
+    desc:"ابحث عن أماكن قريبة من المطاعم والتنزه والأنشطة البحرية.",
+    img:"https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=80",
+    link:"https://www.google.com/search?q=hotels+near+Hurghada+Marina"
+  }
+];
+
+const placesGrid = document.getElementById("placesGrid");
+const hotelsGrid = document.getElementById("hotelsGrid");
+const toast = document.getElementById("toast");
+let currentPlaceFilter = "all";
+let currentHotelFilter = "all";
+let currentQuery = "";
+let currentCity = "all";
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;",
+    '"':"&quot;", "'":"&#39;"
+  })[char]);
+}
+
+function cardHTML(item, hotel = false) {
+  const name = escapeHTML(item.name);
+  const desc = escapeHTML(item.desc);
+  const type = escapeHTML(item.type);
+  const cityName = escapeHTML(item.cityName);
+  const img = escapeHTML(item.img);
+  const link = escapeHTML(item.link);
+  const action = hotel ? "ابحث عن الحجز ↗" : "التفاصيل والزيارة ↗";
+  return `
+    <article class="card">
+      <img src="${img}" alt="${name}" loading="lazy">
+      <div class="card-body">
+        <span class="tag">${cityName} · ${type}</span>
+        <h3>${name}</h3>
+        <p>${desc}</p>
+        <div class="card-bottom">
+          <span class="price">${hotel ? "تحقق من السعر" : escapeHTML(item.price)}</span>
+          <a class="small-btn" href="${link}" target="_blank" rel="noopener noreferrer">${action}</a>
+        </div>
+      </div>
+    </article>`;
+}
+
+function render() {
+  const query = currentQuery.toLocaleLowerCase("ar");
+  const filteredPlaces = places.filter(item =>
+    (currentPlaceFilter === "all" || item.city === currentPlaceFilter) &&
+    (currentCity === "all" || item.city === currentCity) &&
+    (item.name + " " + item.cityName + " " + item.type)
+      .toLocaleLowerCase("ar").includes(query)
+  );
+
+  const filteredHotels = hotels.filter(item =>
+    (currentHotelFilter === "all" || item.city === currentHotelFilter) &&
+    (currentCity === "all" || item.city === currentCity) &&
+    (item.name + " " + item.cityName + " " + item.type)
+      .toLocaleLowerCase("ar").includes(query)
+  );
+
+  placesGrid.innerHTML = filteredPlaces.length
+    ? filteredPlaces.map(item => cardHTML(item)).join("")
+    : '<p class="empty">مفيش أماكن مطابقة للبحث. جرب كلمة تانية.</p>';
+
+  hotelsGrid.innerHTML = filteredHotels.length
+    ? filteredHotels.map(item => cardHTML(item, true)).join("")
+    : '<p class="empty">مفيش فنادق مطابقة للبحث. جرّب تغيير المدينة أو كلمة البحث.</p>';
+}
+
+function setFilter(group, value) {
+  if (group === "place") currentPlaceFilter = value;
+  else currentHotelFilter = value;
+
+  document.querySelectorAll(group === "place" ? "#placeFilters" : "#hotelFilters")
+    .forEach(container => {
+      container.querySelectorAll(".filter").forEach(button => {
+        button.classList.toggle("active", button.dataset.filter === value);
+      });
+    });
+  render();
+}
+
+document.querySelectorAll("#placeFilters .filter").forEach(button => {
+  button.addEventListener("click", () => setFilter("place", button.dataset.filter));
+});
+document.querySelectorAll("#hotelFilters .filter").forEach(button => {
+  button.addEventListener("click", () => setFilter("hotel", button.dataset.filter));
+});
+
+document.querySelectorAll("[data-city-link]").forEach(link => {
+  link.addEventListener("click", () => {
+    currentCity = link.dataset.cityLink;
+    document.getElementById("citySelect").value = currentCity;
+    currentPlaceFilter = currentCity;
+    currentHotelFilter = currentCity;
+    document.querySelectorAll("#placeFilters .filter").forEach(b =>
+      b.classList.toggle("active", b.dataset.filter === currentCity));
+    document.querySelectorAll("#hotelFilters .filter").forEach(b =>
+      b.classList.toggle("active", b.dataset.filter === currentCity));
+    render();
+  });
+});
+
+document.getElementById("searchForm").addEventListener("submit", event => {
+  event.preventDefault();
+  currentQuery = document.getElementById("searchInput").value.trim();
+  currentCity = document.getElementById("citySelect").value;
+  currentPlaceFilter = "all";
+  currentHotelFilter = "all";
+  document.querySelectorAll(".filters").forEach(container =>
+    container.querySelectorAll(".filter").forEach(button =>
+      button.classList.toggle("active", button.dataset.filter === "all")));
+  render();
+  document.getElementById("places").scrollIntoView({ behavior:"smooth" });
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
